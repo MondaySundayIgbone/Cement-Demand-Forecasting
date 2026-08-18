@@ -1,9 +1,14 @@
-FROM python-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY . .
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install requirments
+COPY src ./src
 
-CMD ["uvicorn" "inference:app"]
+WORKDIR /app/src
+
+EXPOSE 8000
+
+CMD ["uvicorn", "inference:app", "--host", "0.0.0.0", "--port", "8000"]

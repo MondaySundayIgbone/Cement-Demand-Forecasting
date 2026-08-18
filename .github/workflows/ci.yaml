@@ -3,8 +3,8 @@ name: CI
 on:
   push:
     branches: [main]
-  pull_requests:
-      branches: [main]
+  pull_request:
+    branches: [main]
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   test:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: mig_cement
